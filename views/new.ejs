@@ -1,11 +1,24 @@
 <% include partials/header %>
 
-<h1>Add a New Campground</h1>
+<div class="container d-flex justify-content-center">
+   <div class='row'>
 
-<form action="/campgrounds" method='POST'>
-<input type="text" placeholder="Add Campground Name" name='newCampgroundName'>
-<input type="text" placeholder="Add Image URL" name='newCampgroundImage'>
-<button>Add Campground</button>
-</form>
+      <h1 class='col-lg-12' style='text-align: center;'>Add a New Campground</h1>
+      <div style='width: 30%; margin: 0 auto;'>
+         <form action="/campgrounds" method='POST'>
+            <div class='form-group mt-3'>
+                  <input class='form-control' type="text" placeholder="Add Campground Name" name='newCampgroundName'>
+            </div>
+            <div class='form-group'>
+                  <input class='form-control' type="text" placeholder="Add Image URL" name='newCampgroundImage'>
+            </div>
+            <div class='form-group'>
+                  <button class='btn btn-lg btn-secondary btn-block'>Add Campground</button>
+            </div>
+            
+         </form>
+      </div>
+   </div>
+</div>
 
 <% include partials/footer %>

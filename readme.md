@@ -26,3 +26,10 @@
 # Version 4: Colt Steele's Web Dev Bootcamp, Section 28, Chapter 293
 # Styling Campgrounds
    - Added a jumbotron to campgrounds
+   - Added img-thumbnail to img tags
+
+# Version 5: Colt Steele's Web Dev Bootcamp, Section 28, Chapter 294
+# Styling Nav and Forms
+   Added navbar to header.ejs
+   Center the Add a New Campground Form
+   Stack the form inputs vertically

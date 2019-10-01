@@ -4,12 +4,12 @@ var bodyParser = require('body-parser')
 
 app.set('view engine', 'ejs')
 
-app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.urlencoded({ extended: true }))
 
 var campgrounds = [
-   {name: 'Salmon Creek', image: 'https://images.unsplash.com/photo-1455763916899-e8b50eca9967?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80' },
-   {name: 'Granite Hill', image: 'https://images.unsplash.com/photo-1504851149312-7a075b496cc7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=949&q=80' },
-   {name: "Mountain Goat's Rest", image: 'https://images.unsplash.com/photo-1533873984035-25970ab07461?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1953&q=80'}
+   { name: 'Salmon Creek', image: 'https://images.unsplash.com/photo-1455763916899-e8b50eca9967?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80' },
+   { name: 'Granite Hill', image: 'https://images.unsplash.com/photo-1504851149312-7a075b496cc7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=949&q=80' },
+   { name: "Mountain Goat's Rest", image: 'https://images.unsplash.com/photo-1533873984035-25970ab07461?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1953&q=80' }
 ]
 
 //================
@@ -21,13 +21,14 @@ app.get('/', (req, res) => {
 })
 
 app.get('/campgrounds', (req, res) => {
-   res.render('campgrounds', {campgrounds: campgrounds})
+   res.render('campgrounds', { campgrounds: campgrounds })
 })
 
 app.post('/campgrounds', (req, res) => {
-   var newCampground = {name: req.body.newCampgroundName, image: req.body.newCampgroundImage}
-   campgrounds.push(newCampground)
-
+   if (req.body.newCampgroundName !== '') {
+      var newCampground = { name: req.body.newCampgroundName, image: req.body.newCampgroundImage }
+      campgrounds.push(newCampground)
+   }
    // There are two /campground routes, but the default is to the .get route
    res.redirect('/campgrounds')
 })
