@@ -15,3 +15,10 @@
 # Layout
    - Added in header and footer partials in views/partials/
    - Added Bootstrap 4 to header.ejs
+
+# Version 3: Colt Steele's Web Dev Bootcamp, Section 28, Chapter 291
+# Creating Campgrounds
+   Setup new Campground POST route
+   Added in body-parser
+   Setup route to show form
+   Added basic unstyled form
