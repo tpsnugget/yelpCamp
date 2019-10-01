@@ -22,3 +22,7 @@
    Added in body-parser
    Setup route to show form
    Added basic unstyled form
+
+# Version 4: Colt Steele's Web Dev Bootcamp, Section 28, Chapter 293
+# Styling Campgrounds
+   - Added a jumbotron to campgrounds
