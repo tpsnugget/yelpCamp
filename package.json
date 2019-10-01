@@ -1,0 +1,23 @@
+{
+  "name": "yelpcamp",
+  "version": "1.0.0",
+  "description": "yelpCamp App for Colt Steele's Web Dev Bootcamp",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tpsnugget/yelpCamp.git"
+  },
+  "author": "Mike Giebner",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tpsnugget/yelpCamp/issues"
+  },
+  "homepage": "https://github.com/tpsnugget/yelpCamp#readme",
+  "dependencies": {
+    "ejs": "^2.7.1",
+    "express": "^4.17.1"
+  }
+}
