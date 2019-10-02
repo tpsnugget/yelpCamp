@@ -47,3 +47,7 @@
 # Version 6: Colt Steele's Web Dev Bootcamp, Section 29, Chapter 301
 # Databases: Introduction to Mongoodse Pt. 1 and Pt. 2
    npm i mongoose --save
+
+# Version 7: Colt Steele's Web Dev Bootcamp, Section 30, Chapter 303
+# YelpCamp: Data Persistence
+   - Created a yelp_camp db and connected it to our App
