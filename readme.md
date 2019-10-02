@@ -51,3 +51,11 @@
 # Version 7: Colt Steele's Web Dev Bootcamp, Section 30, Chapter 303
 # YelpCamp: Data Persistence
    - Created a yelp_camp db and connected it to our App
+
+# Version 8: Colt Steele's Web Dev Bootcamp, Section 30, Chapter 305
+# YelpCamp: Campground Show Page Part 1 and 2
+   Restful Routes
+      Index Route    /campgrounds      GET   Show all campgrounds
+      New Route      /campgrounds/new  GET   Displays for to make a new campground
+      Create Route   /campgrounds      POST  Add a new campground to the db
+      Show Route     /campgrounds/:id  GET   Shows info about one campground
