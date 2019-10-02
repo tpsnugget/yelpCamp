@@ -1,6 +1,32 @@
 var express = require('express')
 var app = express()
 var bodyParser = require('body-parser')
+var mongoose = require('mongoose')
+mongoose.connect('mongodb://localhost:27017/dogs', {useNewUrlParser: true})
+
+var dogSchema = new mongoose.Schema({
+   name: String,
+   breed: String,
+   state: String,
+})
+
+var dog = mongoose.model('dog', dogSchema)
+
+var Hank = new dog({
+   name: 'Mona',
+   breed: 'Redtick Coon Hound',
+   state: 'SC'
+})
+
+// Hank is being sent to the db
+//              dog is what is being returned from the db
+Hank.save((err, dog) => {
+   if(err) {console.log('Something went wrong')}
+   else {
+      console.log('We just saved a dog to the db')
+      console.log(dog)
+   }
+})
 
 app.set('view engine', 'ejs')
 
