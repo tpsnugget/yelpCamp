@@ -23,6 +23,27 @@
    Setup route to show form
    Added basic unstyled form
 
-# Version 4: Colt Steele's Web Dev Bootcamp, Section 28, Chapter 293
+# Version 4: Colt Steele's Web Dev Bootcamp, Section 28, Chapter 294
 # Styling Campgrounds
    - Added a jumbotron to campgrounds
+   - Added img-thumbnail to img tags
+
+# Version 5: Colt Steele's Web Dev Bootcamp, Section 28, Chapter 295
+# Styling Nav and Forms
+   Added navbar to header.ejs
+   Center the Add a New Campground Form
+   Stack the form inputs vertically
+
+# Version 6: Colt Steele's Web Dev Bootcamp, Section 29, Chapter 296
+# Databases: What is a database?
+   - What is a database?
+      - A collection of information / data
+      - Has an interface
+   - SQL (relational) vs. NoSQL (non-relational)
+
+# Version 6: Colt Steele's Web Dev Bootcamp, Section 29, Chapter 298
+# Databases: Installing MongoDB
+
+# Version 6: Colt Steele's Web Dev Bootcamp, Section 29, Chapter 301
+# Databases: Introduction to Mongoodse Pt. 1 and Pt. 2
+   npm i mongoose --save
