@@ -8,17 +8,10 @@ mongoose.connect('mongodb://localhost:27017/yelp_camp', {useNewUrlParser: true})
 var campgroundSchema = new mongoose.Schema({
    name: String,
    image: String,
+   description: String
 })
 
 var Campground = mongoose.model('Campground', campgroundSchema)
-
-// Campground.create({
-//    name: 'Granite Hill',
-//    image: 'https://images.unsplash.com/photo-1504851149312-7a075b496cc7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=949&q=80'
-// }, (err, campground) => {
-//    if (err) {console.log(err)}
-//    else {console.log(campground)}
-// })
 
 app.set('view engine', 'ejs')
 
@@ -32,17 +25,20 @@ app.get('/', (req, res) => {
    res.render('landing')
 })
 
+// Index Route    /campgrounds      GET   Show all campgrounds
 app.get('/campgrounds', (req, res) => {
    Campground.find({}, (err, campgrounds) => {
       if (err) {console.log(err)}
-      else {res.render('campgrounds', { campgrounds: campgrounds })}
+      else {res.render('index', { campgrounds: campgrounds })}
    })
 })
 
+// Create Route   /campgrounds      POST  Add a new campground to the db
 app.post('/campgrounds', (req, res) => {
    if (req.body.newCampgroundName !== '') {
       var newCampground = { name: req.body.newCampgroundName, 
-                            image: req.body.newCampgroundImage }
+                            image: req.body.newCampgroundImage,
+                            description: req.body.description}
       Campground.create(newCampground, (err, campground) => {
          if (err) {console.log(err)}
          else {console.log(campground)}
@@ -52,8 +48,17 @@ app.post('/campgrounds', (req, res) => {
    res.redirect('/campgrounds')
 })
 
+// New Route      /campgrounds/new  GET   Displays for to make a new campground
 app.get('/campgrounds/new', (req, res) => {
    res.render('new.ejs')
+})
+
+// Show Route     /campgrounds/:id         GET   Shows info about one campground
+app.get('/campgrounds/:id', (req, res) => {
+   Campground.findById(req.params.id, (err, foundCampground) => {
+      if(err) {console.log(err)}
+      else {res.render('show', {campground: foundCampground})}
+   })
 })
 
 //================
