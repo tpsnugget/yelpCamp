@@ -2,12 +2,15 @@ var express    = require('express'),
     app        = express(),
     bodyParser = require('body-parser'),
     mongoose   = require('mongoose'),
-    Campground = require("./models/campground")
+    Campground = require("./models/campground"),
+    seedDB     = require("./seeds")
 
 const options = {
    useNewUrlParser: true,
    useUnifiedTopology: true
 }
+
+seedDB()
 
 mongoose.connect('mongodb://localhost:27017/yelp_camp', options)
 

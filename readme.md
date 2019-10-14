@@ -66,3 +66,11 @@
       - Created ./models/campgrounds.js
    - Added modules.exports
    - Required everything properly
+
+# C1:33:324 - 334: Colt Steele's Web Dev Bootcamp
+# C1:33:326: YelpCamp: Comments: YelpCamp: Seeding the Database
+   Added seeds.js in the main directory
+   Removed all campgrounds
+   Added some seed campgrounds after the deletion. This will allow in the future
+      that we can ensure comments are working properly w/o having to write all the
+      routes first.
