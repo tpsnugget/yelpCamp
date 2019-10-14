@@ -59,3 +59,10 @@
       New Route      /campgrounds/new  GET   Displays for to make a new campground
       Create Route   /campgrounds      POST  Add a new campground to the db
       Show Route     /campgrounds/:id  GET   Shows info about one campground
+
+# C1:33:324 - 334: Colt Steele's Web Dev Bootcamp
+# C1:33:324: YelpCamp: Comments: YelpCamp: Refactoring app.js
+   - Created a models directory
+      - Created ./models/campgrounds.js
+   - Added modules.exports
+   - Required everything properly
