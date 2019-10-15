@@ -3,7 +3,8 @@ var express    = require('express'),
     bodyParser = require('body-parser'),
     mongoose   = require('mongoose'),
     Campground = require("./models/campground"),
-    seedDB     = require("./seeds")
+    seedDB     = require("./seeds"),
+    Comment    = require("./models/comment")
 
 const options = {
    useNewUrlParser: true,
@@ -30,7 +31,7 @@ app.get('/', (req, res) => {
 app.get('/campgrounds', (req, res) => {
    Campground.find({}, (err, campgrounds) => {
       if (err) {console.log(err)}
-      else {res.render('index', { campgrounds: campgrounds })}
+      else {res.render('campgrounds/index', { campgrounds: campgrounds })}
    })
 })
 
@@ -51,19 +52,28 @@ app.post('/campgrounds', (req, res) => {
 
 // New Route      /campgrounds/new  GET   Displays for to make a new campground
 app.get('/campgrounds/new', (req, res) => {
-   res.render('new.ejs')
+   res.render('campgrounds/new')
 })
 
 // Show Route     /campgrounds/:id         GET   Shows info about one campground
 app.get('/campgrounds/:id', (req, res) => {
-   Campground.findById(req.params.id, (err, foundCampground) => {
+   Campground.findById(req.params.id).populate("comments").exec((err, foundCampground) => {
       if(err) {console.log(err)}
-      else {res.render('show', {campground: foundCampground})}
+      else {
+         res.render('campgrounds/show', {campground: foundCampground})
+      }
    })
 })
 
-//================
-//    ROUTES
-//================
+//=======================
+//    COMMENTS ROUTES
+//=======================
+
+app.get('/campgrounds/:id/comments/new', (req, res) => {
+   Campground.findById(req.params.id, (err, campground) => {
+      if (err) {console.log(err)}
+      else {res.render('comments/new', {campground: campground})}
+   })
+})
 
 app.listen(3000, process.env.IP, () => { console.log('The yelpCamp Server is running!!') })

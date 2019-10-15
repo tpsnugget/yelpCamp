@@ -74,3 +74,16 @@
    Added some seed campgrounds after the deletion. This will allow in the future
       that we can ensure comments are working properly w/o having to write all the
       routes first.
+
+# C1:33:324 - 334: Colt Steele's Web Dev Bootcamp
+# C1:33:328: YelpCamp: Comments: YelpCamp: Comment Model
+
+# C1:33:324 - 334: Colt Steele's Web Dev Bootcamp
+# C1:33:330: YelpCamp: Comments: YelpCamp: Comments Pt. 1
+   - Nested ROUTES
+   - Added views/comments directory
+      - Added a new.ejs file to this directory
+   - Added views/campgrounds directory
+      - Moved index.ejs, new.ejs, show.ejs to this new directory
+      - Had to add ../ to the beginning of partials/header and footer since the
+         files have now been moved
