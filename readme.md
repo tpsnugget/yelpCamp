@@ -96,3 +96,11 @@
       Create new comment
       Connect new comment to campground
       Redirect to campground page to see new comment
+
+# C1:33:324 - 334: Colt Steele's Web Dev Bootcamp
+# C1:33:332: YelpCamp: Comments: YelpCamp: Styling Comments Pt. 1
+   - Styling with Bootstrap 4
+   - Added a container for everythng in show.ejs
+   - Added a class="row" container
+      - Left sidebar class="col-md-3"
+      - Main content class="col-md-9"
