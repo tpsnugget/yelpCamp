@@ -104,3 +104,8 @@
    - Added a class="row" container
       - Left sidebar class="col-md-3"
       - Main content class="col-md-9"
+
+# C1:33:324 - 334: Colt Steele's Web Dev Bootcamp
+# C1:33:334: YelpCamp: Comments: YelpCamp: Styling Comments Pt. 2
+   Added public and then public/stylesheets directories
+   Added main.css
