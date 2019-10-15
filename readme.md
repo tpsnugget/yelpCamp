@@ -87,3 +87,12 @@
       - Moved index.ejs, new.ejs, show.ejs to this new directory
       - Had to add ../ to the beginning of partials/header and footer since the
          files have now been moved
+
+# C1:33:324 - 334: Colt Steele's Web Dev Bootcamp
+# C1:33:331: YelpCamp: Comments: YelpCamp: Comments Pt. 2
+   Added POST ROUTE for new comment submission
+   Need to:
+      Lookup campground using id
+      Create new comment
+      Connect new comment to campground
+      Redirect to campground page to see new comment
