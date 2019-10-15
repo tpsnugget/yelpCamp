@@ -74,3 +74,7 @@
    Added some seed campgrounds after the deletion. This will allow in the future
       that we can ensure comments are working properly w/o having to write all the
       routes first.
+
+# C1:33:324 - 334: Colt Steele's Web Dev Bootcamp
+# C1:33:328: YelpCamp: Comments: YelpCamp: Comment Model
+   - 

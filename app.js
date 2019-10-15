@@ -3,7 +3,8 @@ var express    = require('express'),
     bodyParser = require('body-parser'),
     mongoose   = require('mongoose'),
     Campground = require("./models/campground"),
-    seedDB     = require("./seeds")
+    seedDB     = require("./seeds"),
+    Comment    = require("./models/comment")
 
 const options = {
    useNewUrlParser: true,
@@ -56,9 +57,12 @@ app.get('/campgrounds/new', (req, res) => {
 
 // Show Route     /campgrounds/:id         GET   Shows info about one campground
 app.get('/campgrounds/:id', (req, res) => {
-   Campground.findById(req.params.id, (err, foundCampground) => {
+   Campground.findById(req.params.id).populate("comments").exec((err, foundCampground) => {
       if(err) {console.log(err)}
-      else {res.render('show', {campground: foundCampground})}
+      else {
+         console.log(foundCampground)
+         res.render('show', {campground: foundCampground})
+      }
    })
 })
 
