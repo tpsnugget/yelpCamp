@@ -8,7 +8,7 @@ var express = require("express"),
    Comment = require("./models/comment"),
    localStrategy = require("passport-local"),
    Campground = require("./models/campground")
-   
+
 
 const options = {
    useNewUrlParser: true,
@@ -23,10 +23,20 @@ app.set('view engine', 'ejs')
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static(__dirname + "/public"))
+app.use(require("express-session")({
+   secret: "Once again Rusty wins cutest dog!",
+   resave: false,
+   saveUninitialized: false
+}))
+app.use(passport.initialize())
+app.use(passport.session())
+passport.use(new localStrategy(User.authenticate()))
+passport.serializeUser(User.serializeUser())
+passport.deserializeUser(User.deserializeUser())
 
-//================
+//==============================================================================
 //    ROUTES
-//================
+//==============================================================================
 
 app.get('/', (req, res) => {
    res.render('landing')
@@ -72,9 +82,9 @@ app.get('/campgrounds/:id', (req, res) => {
    })
 })
 
-//=======================
+//==============================================================================
 //    COMMENTS ROUTES
-//=======================
+//==============================================================================
 
 app.get('/campgrounds/:id/comments/new', (req, res) => {
    Campground.findById(req.params.id, (err, campground) => {
@@ -99,6 +109,28 @@ app.post('/campgrounds/:id/comments', (req, res) => {
             }
          })
       }
+   })
+})
+
+//==============================================================================
+//    AUTH ROUTES
+//==============================================================================
+// Show register FORM
+app.get("/register", (req, res) => {
+   res.render("register")
+})
+
+// Signup Logic
+app.post("/register", (req, res) => {
+   var newUser = new User({ username: req.body.username })
+   User.register(newUser, req.body.password, (err, user) => {
+      if (err) {
+         console.log(err)
+         return res.render("register")
+      }
+      passport.authenticate("local")(req, res, () => {
+         res.redirect("/campgrounds")
+      })
    })
 })
 
