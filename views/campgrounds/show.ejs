@@ -22,12 +22,16 @@
                <p>
                   <%= campground.description %>
                </p>
+               <p>
+                  <em>Submitted by</em> <%= campground.author.username %>
+               </p>
             </div>
          </div>
 
          <div class="container card">
             <div class="text-right">
-               <a class="btn btn-success mt-3" href="/campgrounds/<%= campground._id %>/comments/new">Add New Comment</a>
+               <a class="btn btn-success mt-3" href="/campgrounds/<%= campground._id %>/comments/new">Add New
+                  Comment</a>
             </div>
             <hr>
             <% campground.comments.forEach((e) => { %>
