@@ -11,7 +11,7 @@ router.get('/', isLoggedIn, (req, res) => {
    Campground.find({}, (err, campgrounds) => {
       if (err) { console.log(err) }
       else {
-         res.render('campgrounds/index', {campgrounds: campgrounds})
+         res.render('campgrounds/index', { campgrounds: campgrounds })
       }
    })
 })
@@ -47,7 +47,27 @@ router.get('/:id', isLoggedIn, (req, res) => {
    Campground.findById(req.params.id).populate("comments").exec((err, foundCampground) => {
       if (err) { console.log(err) }
       else {
-         res.render('campgrounds/show', {campground: foundCampground})
+         res.render('campgrounds/show', { campground: foundCampground })
+      }
+   })
+})
+
+// EDIT ROUTE for Campgrounds
+router.get("/:id/edit", (req, res) => {
+   Campground.findById(req.params.id, (err, foundCampground) => {
+      if (err) { res.redirect("/campgrounds") }
+      else {
+         res.render("campgrounds/edit", { campground: foundCampground })
+      }
+   })
+})
+
+// UPDATE ROUTE for Campgrounds
+router.put("/:id", (req, res) => {
+   Campground.findByIdAndUpdate(req.params.id, req.body.campground, (err, updatedCampground) => {
+      if (err) {res.redirect("/campgrounds")}
+      else {
+         res.redirect("/campgrounds/" + req.params.id)
       }
    })
 })

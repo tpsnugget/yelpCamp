@@ -158,3 +158,14 @@
    Prevent an unauthenticated user from creating a campground
       (I did this quite a while back)
    Save username + id to newly created campground
+
+# C1:37:350 - 359: Colt Steele's Web Dev Bootcamp
+# C1:37:350: YelpCamp: Update and Destroy: Intro to New YelpCamp Features
+
+# C1:37:350 - 359: Colt Steele's Web Dev Bootcamp
+# C1:37:351: YelpCamp: Update and Destroy: Campground Edit and Update
+   - Added Method-Override (npm i --save method-override)
+   - Added Edit ROUTE for Campgrounds
+   - Added Link to Edit Page
+   - Added Update ROUTE
+   - Fixed $set problem
