@@ -145,3 +145,10 @@
       touch routes/campgrounds.js
       touch routes/comments.js
       touch routes/index.js
+
+# C1:36:347 - 349: Colt Steele's Web Dev Bootcamp
+# C1:36:347: YelpCamp: Cleaning Up: User Associations: Comment
+   - Associate users and comments
+   - Save author name to a comment automatically
+   - Deleted all campgrounds from the DB and then commented out the seedDB() function
+   - Removed the author section from the comment FORM

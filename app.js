@@ -19,7 +19,7 @@ const options = {
    useUnifiedTopology: true
 }
 
-seedDB()
+// seedDB()
 
 mongoose.connect('mongodb://localhost:27017/yelp_camp', options)
 

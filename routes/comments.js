@@ -16,6 +16,27 @@ router.get('/new', isLoggedIn, (req, res) => {
    })
 })
 
+// OLD OLD OLD OLD
+// router.post('/', isLoggedIn, (req, res) => {
+//    Campground.findById(req.params.id, (err, campground) => {
+//       if (err) {
+//          console.log(err)
+//          res.redirect('/campgrounds')
+//       }
+//       else {
+//          Comment.create(req.body.comment, (err, comment) => {
+//             if (err) { console.log(err) }
+//             else {
+//                campground.comments.push(comment)
+//                campground.save()
+//                res.redirect('/campgrounds/' + campground._id)
+//             }
+//          })
+//       }
+//    })
+// })
+
+// Changed in C1:36:348
 router.post('/', isLoggedIn, (req, res) => {
    Campground.findById(req.params.id, (err, campground) => {
       if (err) {
@@ -26,6 +47,11 @@ router.post('/', isLoggedIn, (req, res) => {
          Comment.create(req.body.comment, (err, comment) => {
             if (err) { console.log(err) }
             else {
+               // Added in C1:36:348 ===========================================
+               comment.author.id = req.user._id
+               comment.author.username = req.user.username
+               comment.save()
+               //===============================================================
                campground.comments.push(comment)
                campground.save()
                res.redirect('/campgrounds/' + campground._id)
@@ -34,7 +60,6 @@ router.post('/', isLoggedIn, (req, res) => {
       }
    })
 })
-
 function isLoggedIn(req, res, next) {
    if (req.isAuthenticated()) {
       return next()
