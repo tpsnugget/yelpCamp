@@ -126,3 +126,10 @@
 # C1:35:344: YelpCamp: Adding Auth Pt. 3
    - Added Login ROUTES
    - Added Login template
+
+# C1:35:342 - 346: Colt Steele's Web Dev Bootcamp
+# C1:35:345: YelpCamp: Adding Auth Pt. 4
+   Added Logout ROUTE
+   Prevented User from adding a comment if not logged in
+   Added links to navbar
+   Showed / hid auth links correctly

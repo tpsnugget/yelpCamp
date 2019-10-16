@@ -43,7 +43,7 @@ app.get('/', (req, res) => {
 })
 
 // Index Route    /campgrounds      GET   Show all campgrounds
-app.get('/campgrounds', (req, res) => {
+app.get('/campgrounds', isLoggedIn, (req, res) => {
    Campground.find({}, (err, campgrounds) => {
       if (err) { console.log(err) }
       else { res.render('campgrounds/index', { campgrounds: campgrounds }) }
@@ -51,7 +51,7 @@ app.get('/campgrounds', (req, res) => {
 })
 
 // Create Route   /campgrounds      POST  Add a new campground to the db
-app.post('/campgrounds', (req, res) => {
+app.post('/campgrounds', isLoggedIn, (req, res) => {
    if (req.body.newCampgroundName !== '') {
       var newCampground = {
          name: req.body.newCampgroundName,
@@ -68,12 +68,12 @@ app.post('/campgrounds', (req, res) => {
 })
 
 // New Route      /campgrounds/new  GET   Displays for to make a new campground
-app.get('/campgrounds/new', (req, res) => {
+app.get('/campgrounds/new', isLoggedIn, (req, res) => {
    res.render('campgrounds/new')
 })
 
 // Show Route     /campgrounds/:id         GET   Shows info about one campground
-app.get('/campgrounds/:id', (req, res) => {
+app.get('/campgrounds/:id', isLoggedIn, (req, res) => {
    Campground.findById(req.params.id).populate("comments").exec((err, foundCampground) => {
       if (err) { console.log(err) }
       else {
@@ -86,14 +86,14 @@ app.get('/campgrounds/:id', (req, res) => {
 //    COMMENTS ROUTES
 //==============================================================================
 
-app.get('/campgrounds/:id/comments/new', (req, res) => {
+app.get('/campgrounds/:id/comments/new', isLoggedIn, (req, res) => {
    Campground.findById(req.params.id, (err, campground) => {
       if (err) { console.log(err) }
       else { res.render('comments/new', { campground: campground }) }
    })
 })
 
-app.post('/campgrounds/:id/comments', (req, res) => {
+app.post('/campgrounds/:id/comments', isLoggedIn, (req, res) => {
    Campground.findById(req.params.id, (err, campground) => {
       if (err) {
          console.log(err)
@@ -148,5 +148,19 @@ app.post("/login", passport.authenticate("local", {
    
 })
 
+//==============================================================================
+//    LOGOUT ROUTE
+//==============================================================================
+app.get("/logout", (req, res) => {
+   req.logout()
+   res.redirect("/login")
+})
+
+function isLoggedIn(req, res, next) {
+   if (req.isAuthenticated()) {
+      return next()
+   }
+   res.redirect("/login")
+}
 
 app.listen(3000, process.env.IP, () => { console.log('The yelpCamp Server is running!!') })
