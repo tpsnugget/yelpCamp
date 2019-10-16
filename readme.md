@@ -137,3 +137,11 @@
 # C1:35:342 - 346: Colt Steele's Web Dev Bootcamp
 # C1:35:346: YelpCamp: Adding Auth Pt. 5
    - Show / hide auth links in navbar correctly
+
+# C1:36:347 - 349: Colt Steele's Web Dev Bootcamp
+# C1:36:347: YelpCamp: Cleaning Up: Refactoring Routes
+   Use Express ROUTER to reorganize all ROUTES
+   mkdir routes
+      touch routes/campgrounds.js
+      touch routes/comments.js
+      touch routes/index.js

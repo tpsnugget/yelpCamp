@@ -9,6 +9,10 @@ var express = require("express"),
    localStrategy = require("passport-local"),
    Campground = require("./models/campground")
 
+var commentRoutes = require("./routes/comments"),
+    campgroundRoutes = require("./routes/campgrounds"),
+    indexRoutes = require("./routes/index")
+
 
 const options = {
    useNewUrlParser: true,
@@ -39,137 +43,8 @@ app.use((req, res, next) => {
    next()
 })
 
-//==============================================================================
-//    ROUTES
-//==============================================================================
-
-app.get('/', (req, res) => {
-   res.render('landing')
-})
-
-// Index Route    /campgrounds      GET   Show all campgrounds
-app.get('/campgrounds', isLoggedIn, (req, res) => {
-   Campground.find({}, (err, campgrounds) => {
-      if (err) { console.log(err) }
-      else {
-         res.render('campgrounds/index', {campgrounds: campgrounds})
-      }
-   })
-})
-
-// Create Route   /campgrounds      POST  Add a new campground to the db
-app.post('/campgrounds', isLoggedIn, (req, res) => {
-   if (req.body.newCampgroundName !== '') {
-      var newCampground = {
-         name: req.body.newCampgroundName,
-         image: req.body.newCampgroundImage,
-         description: req.body.description
-      }
-      Campground.create(newCampground, (err, campground) => {
-         if (err) { console.log(err) }
-         else { console.log(campground) }
-      })
-   }
-   // There are two /campground routes, but the default is to the .get route
-   res.redirect('/campgrounds')
-})
-
-// New Route      /campgrounds/new  GET   Displays for to make a new campground
-app.get('/campgrounds/new', isLoggedIn, (req, res) => {
-   res.render('campgrounds/new')
-})
-
-// Show Route     /campgrounds/:id         GET   Shows info about one campground
-app.get('/campgrounds/:id', isLoggedIn, (req, res) => {
-   Campground.findById(req.params.id).populate("comments").exec((err, foundCampground) => {
-      if (err) { console.log(err) }
-      else {
-         res.render('campgrounds/show', {campground: foundCampground})
-      }
-   })
-})
-
-//==============================================================================
-//    COMMENTS ROUTES
-//==============================================================================
-
-app.get('/campgrounds/:id/comments/new', isLoggedIn, (req, res) => {
-   Campground.findById(req.params.id, (err, campground) => {
-      if (err) { console.log(err) }
-      else {
-         res.render('comments/new', {campground: campground})
-      }
-   })
-})
-
-app.post('/campgrounds/:id/comments', isLoggedIn, (req, res) => {
-   Campground.findById(req.params.id, (err, campground) => {
-      if (err) {
-         console.log(err)
-         res.redirect('/campgrounds')
-      }
-      else {
-         Comment.create(req.body.comment, (err, comment) => {
-            if (err) { console.log(err) }
-            else {
-               campground.comments.push(comment)
-               campground.save()
-               res.redirect('/campgrounds/' + campground._id)
-            }
-         })
-      }
-   })
-})
-
-//==============================================================================
-//    AUTH ROUTES
-//==============================================================================
-// Show register FORM
-app.get("/register", (req, res) => {
-   res.render("register")
-})
-
-// Signup Logic
-app.post("/register", (req, res) => {
-   var newUser = new User({ username: req.body.username })
-   User.register(newUser, req.body.password, (err, user) => {
-      if (err) {
-         console.log(err)
-         return res.render("register")
-      }
-      passport.authenticate("local")(req, res, () => {
-         res.redirect("/campgrounds")
-      })
-   })
-})
-
-//==============================================================================
-//    LOGIN ROUTES
-//==============================================================================
-app.get("/login", (req, res) => {
-   res.render("login")
-})
-
-app.post("/login", passport.authenticate("local", {
-   successRedirect: "/campgrounds",
-   failureRedirect: "/login"
-}), (req, res) => {
-
-})
-
-//==============================================================================
-//    LOGOUT ROUTE
-//==============================================================================
-app.get("/logout", (req, res) => {
-   req.logout()
-   res.redirect("/login")
-})
-
-function isLoggedIn(req, res, next) {
-   if (req.isAuthenticated()) {
-      return next()
-   }
-   res.redirect("/login")
-}
+app.use(indexRoutes)
+app.use("/campgrounds", campgroundRoutes)
+app.use("/campgrounds/:id/comments", commentRoutes)
 
 app.listen(3000, process.env.IP, () => { console.log('The yelpCamp Server is running!!') })
