@@ -115,3 +115,9 @@
    - Install packages needed for auth
       - npm i --save passport passport-local passport-local-mongoose express-session
    - Define User model
+
+# C1:35:342 - 346: Colt Steele's Web Dev Bootcamp
+# C1:35:343: YelpCamp: Adding Auth Pt. 2
+   Added auth ROUTES
+      Show register FORM
+      app.get("/register"...)
