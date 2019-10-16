@@ -34,6 +34,11 @@ passport.use(new localStrategy(User.authenticate()))
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 
+app.use((req, res, next) => {
+   res.locals.currentUser = req.user
+   next()
+})
+
 //==============================================================================
 //    ROUTES
 //==============================================================================
@@ -46,7 +51,9 @@ app.get('/', (req, res) => {
 app.get('/campgrounds', isLoggedIn, (req, res) => {
    Campground.find({}, (err, campgrounds) => {
       if (err) { console.log(err) }
-      else { res.render('campgrounds/index', { campgrounds: campgrounds }) }
+      else {
+         res.render('campgrounds/index', {campgrounds: campgrounds})
+      }
    })
 })
 
@@ -77,7 +84,7 @@ app.get('/campgrounds/:id', isLoggedIn, (req, res) => {
    Campground.findById(req.params.id).populate("comments").exec((err, foundCampground) => {
       if (err) { console.log(err) }
       else {
-         res.render('campgrounds/show', { campground: foundCampground })
+         res.render('campgrounds/show', {campground: foundCampground})
       }
    })
 })
@@ -89,7 +96,9 @@ app.get('/campgrounds/:id', isLoggedIn, (req, res) => {
 app.get('/campgrounds/:id/comments/new', isLoggedIn, (req, res) => {
    Campground.findById(req.params.id, (err, campground) => {
       if (err) { console.log(err) }
-      else { res.render('comments/new', { campground: campground }) }
+      else {
+         res.render('comments/new', {campground: campground})
+      }
    })
 })
 
@@ -145,7 +154,7 @@ app.post("/login", passport.authenticate("local", {
    successRedirect: "/campgrounds",
    failureRedirect: "/login"
 }), (req, res) => {
-   
+
 })
 
 //==============================================================================

@@ -133,3 +133,7 @@
    Prevented User from adding a comment if not logged in
    Added links to navbar
    Showed / hid auth links correctly
+
+# C1:35:342 - 346: Colt Steele's Web Dev Bootcamp
+# C1:35:346: YelpCamp: Adding Auth Pt. 5
+   - Show / hide auth links in navbar correctly
