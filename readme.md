@@ -109,3 +109,9 @@
 # C1:33:334: YelpCamp: Comments: YelpCamp: Styling Comments Pt. 2
    Added public and then public/stylesheets directories
    Added main.css
+
+# C1:35:342 - 346: Colt Steele's Web Dev Bootcamp
+# C1:35:342: YelpCamp: Adding Auth Pt. 1
+   - Install packages needed for auth
+      - npm i --save passport passport-local passport-local-mongoose express-session
+   - Define User model

@@ -1,10 +1,14 @@
-var express    = require('express'),
-    app        = express(),
-    bodyParser = require('body-parser'),
-    mongoose   = require('mongoose'),
-    Campground = require("./models/campground"),
-    seedDB     = require("./seeds"),
-    Comment    = require("./models/comment")
+var express = require("express"),
+   app = express(),
+   seedDB = require("./seeds"),
+   mongoose = require("mongoose"),
+   passport = require("passport"),
+   User = require("./models/user"),
+   bodyParser = require("body-parser"),
+   Comment = require("./models/comment"),
+   localStrategy = require("passport-local"),
+   Campground = require("./models/campground")
+   
 
 const options = {
    useNewUrlParser: true,
@@ -31,20 +35,22 @@ app.get('/', (req, res) => {
 // Index Route    /campgrounds      GET   Show all campgrounds
 app.get('/campgrounds', (req, res) => {
    Campground.find({}, (err, campgrounds) => {
-      if (err) {console.log(err)}
-      else {res.render('campgrounds/index', { campgrounds: campgrounds })}
+      if (err) { console.log(err) }
+      else { res.render('campgrounds/index', { campgrounds: campgrounds }) }
    })
 })
 
 // Create Route   /campgrounds      POST  Add a new campground to the db
 app.post('/campgrounds', (req, res) => {
    if (req.body.newCampgroundName !== '') {
-      var newCampground = { name: req.body.newCampgroundName, 
-                            image: req.body.newCampgroundImage,
-                            description: req.body.description}
+      var newCampground = {
+         name: req.body.newCampgroundName,
+         image: req.body.newCampgroundImage,
+         description: req.body.description
+      }
       Campground.create(newCampground, (err, campground) => {
-         if (err) {console.log(err)}
-         else {console.log(campground)}
+         if (err) { console.log(err) }
+         else { console.log(campground) }
       })
    }
    // There are two /campground routes, but the default is to the .get route
@@ -59,9 +65,9 @@ app.get('/campgrounds/new', (req, res) => {
 // Show Route     /campgrounds/:id         GET   Shows info about one campground
 app.get('/campgrounds/:id', (req, res) => {
    Campground.findById(req.params.id).populate("comments").exec((err, foundCampground) => {
-      if(err) {console.log(err)}
+      if (err) { console.log(err) }
       else {
-         res.render('campgrounds/show', {campground: foundCampground})
+         res.render('campgrounds/show', { campground: foundCampground })
       }
    })
 })
@@ -72,8 +78,8 @@ app.get('/campgrounds/:id', (req, res) => {
 
 app.get('/campgrounds/:id/comments/new', (req, res) => {
    Campground.findById(req.params.id, (err, campground) => {
-      if (err) {console.log(err)}
-      else {res.render('comments/new', {campground: campground})}
+      if (err) { console.log(err) }
+      else { res.render('comments/new', { campground: campground }) }
    })
 })
 
@@ -85,7 +91,7 @@ app.post('/campgrounds/:id/comments', (req, res) => {
       }
       else {
          Comment.create(req.body.comment, (err, comment) => {
-            if (err) {console.log(err)}
+            if (err) { console.log(err) }
             else {
                campground.comments.push(comment)
                campground.save()
