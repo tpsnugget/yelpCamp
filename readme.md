@@ -121,3 +121,8 @@
    Added auth ROUTES
       Show register FORM
       app.get("/register"...)
+
+# C1:35:342 - 346: Colt Steele's Web Dev Bootcamp
+# C1:35:344: YelpCamp: Adding Auth Pt. 3
+   - Added Login ROUTES
+   - Added Login template
