@@ -180,3 +180,6 @@
    - User can only edit his / her campgrounds   (in campground ROUTES)
    - User can only delete his / her campgrounds (in campground ROUTES)
    - Hide / show edit and delete buttons        (in show.ejs)
+
+# C1:37:350 - 359: Colt Steele's Web Dev Bootcamp
+# C1:37:355: YelpCamp: Update and Destroy: Campground Authorization Part 2
