@@ -200,3 +200,8 @@
    User can only edit his / her own comments
    User can only delete his / her own comments
    Hide / show edit and delete buttons
+
+# C1:38:360 - 369: Colt Steele's Web Dev Bootcamp
+# C1:38:360: YelpCamp: UI Improvements: Refactoring Middleware
+   - Added new middleware directory in root
+   - Added middleware/index.js for all middleware code
