@@ -16,6 +16,7 @@ var mongoose = require("mongoose")
 // Changed in C1:36:349
 var campgroundSchema = new mongoose.Schema({
    name:          String,
+   price:         String,
    image:         String,
    description:   String,
    // ADDED ====================================================================

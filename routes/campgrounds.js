@@ -22,6 +22,7 @@ router.post('/', middleware.isLoggedIn, (req, res) => {
    if (req.body.newCampgroundName !== '') {
       var newCampground = {
          name: req.body.newCampgroundName,
+         price: req.body.newCampgroundPrice,
          image: req.body.newCampgroundImage,
          description: req.body.description,
          author: {

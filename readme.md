@@ -214,3 +214,8 @@
 
 # C1:38:360 - 369: Colt Steele's Web Dev Bootcamp
 # C1:38:364: YelpCamp: UI Improvements: Flash Messages: Helpful Errors
+
+# C1:38:360 - 369: Colt Steele's Web Dev Bootcamp
+# C1:38:369: YelpCamp: UI Improvements: Landing Page Refactor - Part One and Part Two
+   Copied text from https://github.com/nax3t/background-slider
+   Added public/stylesheets/landing.css
