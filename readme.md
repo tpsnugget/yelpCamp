@@ -174,3 +174,9 @@
 # C1:37:352: YelpCamp: Update and Destroy: Campground Destroy
    Added Destroy ROUTE
    Added Delete button and styled it with display: inline;
+
+# C1:37:350 - 359: Colt Steele's Web Dev Bootcamp
+# C1:37:354: YelpCamp: Update and Destroy: Campground Authorization Part 1
+   - User can only edit his / her campgrounds   (in campground ROUTES)
+   - User can only delete his / her campgrounds (in campground ROUTES)
+   - Hide / show edit and delete buttons        (in show.ejs)
