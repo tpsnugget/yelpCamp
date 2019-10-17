@@ -208,4 +208,6 @@
 
 # C1:38:360 - 369: Colt Steele's Web Dev Bootcamp
 # C1:38:361: YelpCamp: UI Improvements: Flash Messages: Installation
-   
+
+# C1:38:360 - 369: Colt Steele's Web Dev Bootcamp
+# C1:38:363: YelpCamp: UI Improvements: Flash Messages: Adding Bootstrap

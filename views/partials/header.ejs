@@ -15,19 +15,31 @@
 
       <nav class='navbar navbar-expand-lg navbar-dark bg-dark'>
             <div class='container-fluid'>
-                        <div class='navbar-header col-2'>
-                              <a href="/" class='navbar-brand'>YelpCamp</a>
-                        </div>
-                        <div class='collapse navbar-collapse col-2'>
-                              <ul class='navbar-nav'>
-                                    <% if (!currentUser) { %>
-                                    <li class='nav-item mx-3'><a href="/login">Login</a></li>
-                                    <li class='nav-item mx-3'><a href="/register">Sign Up</a></li>
-                                    <% } else { %>
-                                          <li> <a href="#"> Signed In As <%= currentUser.username %> </a> </li>
-                                    <li class='nav-item mx-3'><a href="/logout">Logout</a></li>
-                                    <% } %>
-                              </ul>
-                        </div>
+                  <div class='navbar-header col-2'>
+                        <a href="/" class='navbar-brand'>YelpCamp</a>
+                  </div>
+                  <div class='collapse navbar-collapse col-2'>
+                        <ul class='navbar-nav'>
+                              <% if (!currentUser) { %>
+                              <li class='nav-item mx-3'><a href="/login">Login</a></li>
+                              <li class='nav-item mx-3'><a href="/register">Sign Up</a></li>
+                              <% } else { %>
+                              <li> <a href="#"> Signed In As <%= currentUser.username %> </a> </li>
+                              <li class='nav-item mx-3'><a href="/logout">Logout</a></li>
+                              <% } %>
+                        </ul>
+                  </div>
             </div>
       </nav>
+
+      <div class="container">
+            <% if (error && error.length > 0) { %>
+            <div class="alert alert-danger mt-3" role="alert">
+                  <%= error %>
+            </div>
+            <% } else if (success && success.length > 0) { %>
+            <div class="alert alert-success mt-3" role="alert">
+                  <%= success %>
+            </div>
+            <% } %>
+      </div>
