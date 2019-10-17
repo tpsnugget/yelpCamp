@@ -8,7 +8,7 @@ var middleware = require("../middleware")
 //==============================================================================
 
 // Index Route    /campgrounds      GET   Show all campgrounds
-router.get('/', middleware.isLoggedIn, (req, res) => {
+router.get('/', (req, res) => {
    Campground.find({}, (err, campgrounds) => {
       if (err) { console.log(err) }
       else {
@@ -44,7 +44,7 @@ router.get('/new', middleware.isLoggedIn, (req, res) => {
 })
 
 // Show Route     /campgrounds/:id         GET   Shows info about one campground
-router.get('/:id', middleware.isLoggedIn, (req, res) => {
+router.get('/:id', (req, res) => {
    Campground.findById(req.params.id).populate("comments").exec((err, foundCampground) => {
       if (err) { console.log(err) }
       else {
@@ -77,12 +77,5 @@ router.delete("/:id", middleware.checkCampgroundOwnership, (req, res) => {
       else { res.redirect("/campgrounds") }
    })
 })
-
-function isLoggedIn(req, res, next) {
-   if (req.isAuthenticated()) {
-      return next()
-   }
-   res.redirect("/login")
-}
 
 module.exports = router

@@ -55,6 +55,7 @@ router.post('/', middleware.isLoggedIn, (req, res) => {
                //===============================================================
                campground.comments.push(comment)
                campground.save()
+               req.flash("success", "Comment added successfully")
                res.redirect('/campgrounds/' + campground._id)
             }
          })
@@ -81,7 +82,10 @@ router.get("/:comment_id/edit", middleware.isLoggedIn, middleware.checkCommentOw
 router.put("/:comment_id", middleware.isLoggedIn, middleware.checkCommentOwnership, (req, res) => {
    Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, (err, updatedComment) => {
       if (err) {res.redirect("back")}
-      else {res.redirect("/campgrounds/" + req.params.id)}
+      else {
+         req.flash("success", "Comment updated successfully")
+         res.redirect("/campgrounds/" + req.params.id)
+      }
    })
 })
 
@@ -89,7 +93,10 @@ router.put("/:comment_id", middleware.isLoggedIn, middleware.checkCommentOwnersh
 router.delete("/:comment_id", middleware.isLoggedIn, middleware.checkCommentOwnership, (req, res) => {
    Comment.findByIdAndRemove(req.params.comment_id, (err) => {
       if (err) {res.redirect("back")}
-      else {res.redirect("/campgrounds/" + req.params.id)}
+      else {
+         req.flash("success", "Comment deleted successfully")
+         res.redirect("/campgrounds/" + req.params.id)
+      }
    })
 })
 
