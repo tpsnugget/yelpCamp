@@ -194,3 +194,9 @@
 # C1:37:358: YelpCamp: Update and Destroy: Comment Destroy
    - Add Destroy ROUTE
    - Add Delete button
+
+# C1:37:350 - 359: Colt Steele's Web Dev Bootcamp
+# C1:37:358: YelpCamp: Update and Destroy: Comment Destroy
+   User can only edit his / her own comments
+   User can only delete his / her own comments
+   Hide / show edit and delete buttons
