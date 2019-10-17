@@ -1,13 +1,14 @@
 var express = require("express")
 var router = express.Router()
 var Campground = require("../models/campground")
+var middleware = require("../middleware")
 
 //==============================================================================
 //    ROUTES
 //==============================================================================
 
 // Index Route    /campgrounds      GET   Show all campgrounds
-router.get('/', isLoggedIn, (req, res) => {
+router.get('/', middleware.isLoggedIn, (req, res) => {
    Campground.find({}, (err, campgrounds) => {
       if (err) { console.log(err) }
       else {
@@ -17,7 +18,7 @@ router.get('/', isLoggedIn, (req, res) => {
 })
 
 // Create Route   /campgrounds      POST  Add a new campground to the db
-router.post('/', isLoggedIn, (req, res) => {
+router.post('/', middleware.isLoggedIn, (req, res) => {
    if (req.body.newCampgroundName !== '') {
       var newCampground = {
          name: req.body.newCampgroundName,
@@ -38,12 +39,12 @@ router.post('/', isLoggedIn, (req, res) => {
 })
 
 // New Route      /campgrounds/new  GET   Displays for to make a new campground
-router.get('/new', isLoggedIn, (req, res) => {
+router.get('/new', middleware.isLoggedIn, (req, res) => {
    res.render('campgrounds/new')
 })
 
 // Show Route     /campgrounds/:id         GET   Shows info about one campground
-router.get('/:id', isLoggedIn, (req, res) => {
+router.get('/:id', middleware.isLoggedIn, (req, res) => {
    Campground.findById(req.params.id).populate("comments").exec((err, foundCampground) => {
       if (err) { console.log(err) }
       else {
@@ -53,14 +54,14 @@ router.get('/:id', isLoggedIn, (req, res) => {
 })
 
 // EDIT ROUTE for Campgrounds
-router.get("/:id/edit", checkCampgroundOwnership, (req, res) => {
+router.get("/:id/edit", middleware.checkCampgroundOwnership, (req, res) => {
    Campground.findById(req.params.id, (err, foundCampground) => {
       res.render("campgrounds/edit", { campground: foundCampground })
    })
 })
 
 // UPDATE ROUTE for Campgrounds
-router.put("/:id", checkCampgroundOwnership, (req, res) => {
+router.put("/:id", middleware.checkCampgroundOwnership, (req, res) => {
    Campground.findByIdAndUpdate(req.params.id, req.body.campground, (err, updatedCampground) => {
       if (err) { res.redirect("/campgrounds") }
       else {
@@ -70,7 +71,7 @@ router.put("/:id", checkCampgroundOwnership, (req, res) => {
 })
 
 // DESTROY ROUTE for Campgrounds
-router.delete("/:id", checkCampgroundOwnership, (req, res) => {
+router.delete("/:id", middleware.checkCampgroundOwnership, (req, res) => {
    Campground.findByIdAndRemove(req.params.id, (err) => {
       if (err) { res.redirect("/campgrounds") }
       else { res.redirect("/campgrounds") }
@@ -82,24 +83,6 @@ function isLoggedIn(req, res, next) {
       return next()
    }
    res.redirect("/login")
-}
-
-// MIDDLEWARE
-function checkCampgroundOwnership(req, res, next) {
-   if (req.isAuthenticated()) {
-      Campground.findById(req.params.id, (err, foundCampground) => {
-         if (err) { res.redirect("back") }
-         else {
-            if (foundCampground.author.id.equals(req.user._id)) {
-               next()
-            }
-            else { res.redirect("back") }
-         }
-      })
-   }
-   else {
-      res.redirect("back")
-   }
 }
 
 module.exports = router
