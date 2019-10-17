@@ -183,3 +183,9 @@
 
 # C1:37:350 - 359: Colt Steele's Web Dev Bootcamp
 # C1:37:355: YelpCamp: Update and Destroy: Campground Authorization Part 2
+
+# C1:37:350 - 359: Colt Steele's Web Dev Bootcamp
+# C1:37:356: YelpCamp: Update and Destroy: Comment Edit and Delete
+   Added Edit ROUTE for comments
+   Added Edit button
+   Added Update ROUTE

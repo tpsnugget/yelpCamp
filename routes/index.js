@@ -51,6 +51,8 @@ router.get("/logout", (req, res) => {
    res.redirect("/login")
 })
 
+
+// MIDDLEWARE
 function isLoggedIn(req, res, next) {
    if (req.isAuthenticated()) {
       return next()
