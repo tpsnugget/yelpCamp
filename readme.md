@@ -189,3 +189,8 @@
    Added Edit ROUTE for comments
    Added Edit button
    Added Update ROUTE
+
+# C1:37:350 - 359: Colt Steele's Web Dev Bootcamp
+# C1:37:358: YelpCamp: Update and Destroy: Comment Destroy
+   - Add Destroy ROUTE
+   - Add Delete button
