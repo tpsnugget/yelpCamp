@@ -4,12 +4,13 @@ var express = require("express"),
    mongoose = require("mongoose"),
    passport = require("passport"),
    User = require("./models/user"),
+   flash = require("connect-flash"),
    bodyParser = require("body-parser"),
    Comment = require("./models/comment"),
    localStrategy = require("passport-local"),
    methodOverride = require("method-override"),
    Campground = require("./models/campground")
-
+   
 var commentRoutes = require("./routes/comments"),
     campgroundRoutes = require("./routes/campgrounds"),
     indexRoutes = require("./routes/index")
@@ -29,6 +30,7 @@ app.set('view engine', 'ejs')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static(__dirname + "/public"))
 app.use(methodOverride("_method"))
+app.use(flash())
 app.use(require("express-session")({
    secret: "Once again Rusty wins cutest dog!",
    resave: false,

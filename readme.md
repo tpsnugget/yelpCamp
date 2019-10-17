@@ -205,3 +205,7 @@
 # C1:38:360: YelpCamp: UI Improvements: Refactoring Middleware
    - Added new middleware directory in root
    - Added middleware/index.js for all middleware code
+
+# C1:38:360 - 369: Colt Steele's Web Dev Bootcamp
+# C1:38:361: YelpCamp: UI Improvements: Flash Messages: Installation
+   
