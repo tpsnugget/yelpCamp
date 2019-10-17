@@ -169,3 +169,8 @@
    - Added Link to Edit Page
    - Added Update ROUTE
    - Fixed $set problem
+
+# C1:37:350 - 359: Colt Steele's Web Dev Bootcamp
+# C1:37:352: YelpCamp: Update and Destroy: Campground Destroy
+   Added Destroy ROUTE
+   Added Delete button and styled it with display: inline;
